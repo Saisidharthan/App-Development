@@ -43,11 +43,11 @@ const Register = () => {
     <div>
       <NavBar />
       <div className="flex justify-center items-center h-[90vh]">
-        <div className="w-[400px] p-5 border border-gray-300 rounded-xl shadow-xl">
-          <h1 className="text-xl font-semibold text-center">Register</h1>
+        <div className="w-[600px] p-5 border border-green-600 rounded-xl shadow-xl">
+          <h1 className="text-2xl font-semibold text-center text-black">Register</h1>
           <form className="flex flex-col gap-3 mt-3" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1">
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName" className='font-semibold text-blue-500'>First Name</label>
               <input
                 type="text"
                 name="firstName"
@@ -59,7 +59,7 @@ const Register = () => {
               {errors.firstName && <p className="text-red-500">{errors.firstName}</p>}
             </div>
             <div className="flex flex-col gap-1">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName"className='font-semibold text-blue-500'>Last Name</label>
               <input
                 type="text"
                 placeholder="Last Name"
@@ -71,7 +71,7 @@ const Register = () => {
               {errors.lastName && <p className="text-red-500">{errors.lastName}</p>}
             </div>
             <div className="flex flex-col gap-1">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email"className='font-semibold text-blue-500'>Email</label>
               <input
                 type="email"
                 placeholder="Email"
@@ -83,7 +83,7 @@ const Register = () => {
               {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
             <div className="flex flex-col gap-1">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" className='font-semibold text-blue-500'>Password</label>
               <input
                 type="password"
                 placeholder="Password"
@@ -94,7 +94,7 @@ const Register = () => {
               />
               {errors.password && <p className="text-red-500">{errors.password}</p>}
             </div>
-            <button className="bg-black text-white p-2 rounded-lg mt-2">Register</button>
+            <button className="bg-green-700 text-white p-2 rounded-lg mt-2">Register</button>
           </form>
         </div>
       </div>
