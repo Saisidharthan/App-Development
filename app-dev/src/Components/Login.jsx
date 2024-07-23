@@ -1,31 +1,52 @@
-import NavBar from "./NavBar"
+import { useState } from 'react'
+import NavBar from './NavBar';
 
 const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+    };
+
+    const [errors, setErrors] = useState({});
+    const validate = () => {
+        const errors = {};
+        if (!formData.email) {
+          errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          errors.email = 'Email is invalid';
+        }
+        if (!formData.password) errors.password = 'Password is required';
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(validate()){
+            console.log(formData);
+        }
+    }
   return (
     <div>
         <NavBar />
-        <div className="items-center w-full h-[80vh] justify-center text-center flex text-black">
-
-            <div className="w-[500px] h-[300px] flex text-center justify-center items-center border border-black mr-auto ml-auto" >
-                <div className="flex flex-col gap-7 justify-between w-[350px]">
-                    <label className="text-3xl text-black underline">Login</label>
-                    <div className="flex gap-2 justify-between">
-                        <label className="text-2xl font-semibold">Name : </label>
-                        <input type="text" className="border border-black rounded-sm ml-9"></input>
-                    </div>
-                    <div className="flex gap-2 justify-between">
-                        <label className="text-2xl font-semibold">Email : </label>
-                        <input type="email" className="border border-black rounded-sm ml-10"></input>
-                    </div>
-                    <div className="flex gap-2 justify-between">
-                        <label className="text-2xl font-semibold">Password : </label>
-                        <input type="password" className="border border-black rounded-sm ml-3"></input>
-                    </div>
-                    <div className="flex gap-2 justify-between">
-                        <input type="submit" className="border text-2xl border-red bg-black text-white w-full rounded-sm ml-3"></input>
-                    </div>
-
-                </div>
+        <div className="flex justify-center items-center h-[70vh]">
+            <div className="w-[400px] p-5 border border-gray-300 rounded-xl shadow-xl">
+                <h1 className="text-xl font-semibold text-center">Login</h1>
+                <form className="flex flex-col gap-3 mt-3" onSubmit={handleSubmit}>
+                    <input type="email" placeholder="Email" name='email' className="p-2 border border-gray-300" value={formData.email} onChange={handleChange}/>
+                    {errors.email && <p className='text-red-500'>{errors.email}</p>}
+                    <input type="password" placeholder="Password" name='password' className="p-2 border border-gray-300" value={formData.password} onChange={handleChange}/>
+                    {errors.password && <p className='text-red-500'>{errors.password}</p>}
+                    <button type="submit" className="bg-black text-white p-2 rounded-lg">Login</button>
+                </form>
             </div>
         </div>
     </div>
